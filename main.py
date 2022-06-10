@@ -1,6 +1,7 @@
 import http.client
 import json
 import requests
+  
 conn = http.client.HTTPSConnection("v3.football.api-sports.io")
 
 headers = {
@@ -17,16 +18,19 @@ responses = jsonData['response']
 for response in responses:
   playerName = response['player']['name']
   transfers = response['transfers'] 
-  transfers = response['transfers']['date']
-  n = len(transfers)
-  lastTransfer = transfers[n-1]
-  print(f"Player name is {playerName}")
-  print(f"latest tranfer {lastTransfer}")
+ 
+  lastTransfer = transfers[0]
+  transferDate= lastTransfer['date']
+  currenttTeamName= lastTransfer['teams']['out']['name']
+  newTeamName= lastTransfer['teams']['in']['name']
+  print(f"Player name that is being tranfered is {playerName}")
+  print(f"The tranfer is taking place in {transferDate}")
+  print(f"The team he is currently playing for is {currenttTeamName}")
+  print(f"The team that he will be transfered to is {newTeamName}")
+  #print(f"latest tranfer {lastTransfer}")
+  
   
 
 
-  
-  #print(f"transfer date is {transfers}")
-  #0print(f"Player tranfers are {transfers}")
-
+ 
 
